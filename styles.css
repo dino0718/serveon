@@ -1,0 +1,148 @@
+/* 🌙 基礎設定 */
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* 🔥 首頁大標題 */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: url('images/hero-bg.jpg') no-repeat center center/cover;
+    position: relative;
+}
+
+/* 🔥 背景遮罩 */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* 🔥 標題樣式 */
+.hero-title {
+    font-size: 5rem;  /* ✅ 調整標題大小 */
+    font-weight: bold;
+    color: #FFD700;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;  /* ✅ 避免手機上字體過大 */
+    color: #AAAAAA;
+    margin-bottom: 20px;
+}
+
+/* 🟡 主要按鈕 */
+.button {
+    display: inline-block;
+    padding: 14px 28px;
+    background: transparent;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid #FFD700;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.button:hover {
+    background: #FFD700;
+    color: black;
+}
+
+/* 🏆 主要內容區塊 */
+.section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 100px 10%;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.section:nth-child(even) {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* 🎯 讓標題更清楚 */
+.text-content h2 {
+    font-size: 2.2rem;  /* ✅ 調整標題大小 */
+    font-weight: bold;
+    color: #FFD700;
+    margin-bottom: 15px;
+}
+
+/* 📝 讓內文更容易閱讀 */
+.text-content p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: #FFFFFF;
+}
+
+/* 🎯 讓圖片縮小，避免影響排版 */
+.image-content img {
+    width: 90%;
+    max-width: 400px;
+    height: auto;
+    display: block;
+    margin: auto;
+    border-radius: 10px;
+}
+
+/* 🌌 視差滾動 */
+.parallax {
+    height: 50vh;
+    background: url('images/parallax-bg.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* 📱 掃描 QR Code */
+.qrcode-section {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 100px 10%;
+    border-radius: 10px;
+}
+
+/* 📱 手機適應樣式 */
+@media (max-width: 768px) {
+    .section {
+        flex-direction: column;  /* ✅ 讓內容上下排列 */
+        text-align: center;
+        padding: 60px 5%;
+    }
+
+    .text-content, .image-content {
+        max-width: 90%;
+    }
+
+    .text-content h2 {
+        font-size: 2rem;
+    }
+
+    .text-content p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+    }
+
+    .image-content img {
+        width: 100%;
+        max-width: 300px; /* ✅ 限制圖片大小 */
+    }
+
+    .button {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+}
