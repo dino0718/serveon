@@ -42,7 +42,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* 🟡 主要按鈕 */
+/* 🟡 主要按鈕 - 修改版 */
 .button {
     display: inline-block;
     padding: 14px 28px;
@@ -52,13 +52,20 @@ body {
     text-decoration: none;
     border: 2px solid #FFD700;
     border-radius: 5px;
-    transition: all 0.3s;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s; /* 明確指定過渡屬性，不包括opacity */
+    cursor: pointer;
+    opacity: 1 !important; /* 強制保持完全不透明 */
+    pointer-events: auto !important; /* 確保按鈕可以被點擊 */
+    position: relative; /* 添加定位上下文 */
+    z-index: 10; /* 增加z-index確保按鈕在最上層 */
 }
 
 .button:hover {
     background: #FFD700;
     color: black;
+    transform: scale(1.05); /* 添加懸停時輕微放大效果 */
 }
+
 
 /* 🏆 主要內容區塊 */
 .section {
