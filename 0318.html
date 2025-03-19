@@ -4,72 +4,166 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ServeOn - 詳細資訊</title>
-    <!-- 在 0318.html 的 <style> 部分修改為 -->
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        background-color: black; /* 改為黑色背景，與主頁一致 */
-        font-family: 'Poppins', sans-serif; /* 保持字體一致 */
-        color: white; /* 文字改為白色 */
-    }
-    
-    .container {
-        max-width: 90%;
-        text-align: center;
-    }
-    
-    .image-container {
-        margin: 20px 0;
-        box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3); /* 金色陰影效果 */
-    }
-    
-    img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 10px; /* 與主頁圖片圓角一致 */
-    }
-    
-    .back-button {
-        margin-top: 20px;
-        padding: 14px 28px;
-        background: transparent;
-        color: white;
-        font-weight: bold;
-        text-decoration: none;
-        border: 2px solid #FFD700; /* 金色邊框 */
-        border-radius: 5px;
-        transition: all 0.3s;
-        cursor: pointer;
-    }
-    
-    .back-button:hover {
-        background: #FFD700;
-        color: black;
-    }
-    
-    h1 {
-        color: #FFD700; /* 使用金色標題，與主頁一致 */
-        font-size: 2.5rem;
-        font-weight: bold;
-    }
-</style>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: black;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+        }
+        
+        .container {
+            max-width: 90%;
+            text-align: center;
+        }
+        
+        .image-container {
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+            min-height: 300px; /* 設置最小高度避免圖片切換時頁面跳動 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+            transition: opacity 0.3s ease; /* 添加淡入淡出效果 */
+        }
+        
+        .buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .feature-button {
+            padding: 12px 24px;
+            background: transparent;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            border: 2px solid #FFD700;
+            border-radius: 5px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .feature-button:hover {
+            background: rgba(255, 215, 0, 0.2);
+            color: #FFD700;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+        }
+        
+        .feature-button:active {
+            transform: translateY(1px);
+            background: rgba(255, 215, 0, 0.5);
+            box-shadow: 0 2px 4px rgba(255, 215, 0, 0.5) inset;
+            transition: all 0.1s ease;
+        }
+        
+        .feature-button.active {
+            background: #FFD700;
+            color: black;
+        }
+        
+        .back-button {
+            margin-top: 20px;
+            padding: 14px 28px;
+            background: transparent;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            border: 2px solid #FFD700;
+            border-radius: 5px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .back-button:hover {
+            background: #FFD700;
+            color: black;
+        }
+        
+        h1 {
+            color: #FFD700;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        
+        /* 隱藏未選中的圖片 */
+        .hidden {
+            display: none;
+        }
+        
+        /* 淡入淡出效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>ServeOn AI 客服系統Demo畫面</h1>
         
+        <div class="buttons-container">
+            <button class="feature-button active" data-image="0318.png">商品問答</button>
+            <button class="feature-button" data-image="group-chat.png">群組對話蒐集</button>
+            <button class="feature-button" data-image="recommendation.png">推薦&廣播</button>
+        </div>
+        
         <div class="image-container">
-            <img src="0318.png" alt="0318圖片">
+            <img id="feature-image" src="0318.png" alt="功能展示圖片">
         </div>
         
         <a href="index.html" class="back-button">返回首頁</a>
     </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.feature-button');
+            const featureImage = document.getElementById('feature-image');
+            
+            // 為每個按鈕添加點擊事件
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // 移除所有按鈕的active狀態
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // 為當前按鈕添加active狀態
+                    this.classList.add('active');
+                    
+                    // 取得要顯示的圖片路徑
+                    const imagePath = this.getAttribute('data-image');
+                    
+                    // 添加淡出效果
+                    featureImage.style.opacity = 0;
+                    
+                    // 在淡出完成後切換圖片並淡入
+                    setTimeout(() => {
+                        featureImage.src = imagePath;
+                        featureImage.style.opacity = 1;
+                    }, 300);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
