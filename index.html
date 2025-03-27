@@ -2,30 +2,207 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ServeOn - AI 客服系統</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            line-height: 1.6;
+            width: 100%;
+            overflow-x: hidden;
+            background-color: black;
+            color: white;
+        }
+
+        .hero {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 2px solid #FFD700;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #FFD700;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #FFD700;
+            opacity: 0.8;
+        }
+
+        .section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 50px 20px;
+            gap: 20px;
+            background-color: black;
+            border-bottom: 2px solid #FFD700;
+        }
+
+        .section.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .text-content, .image-content {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .text-content h2 {
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+
+        .image-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            filter: brightness(0.7);
+            transition: filter 0.3s ease, transform 0.3s ease;
+            border: 2px solid #FFD700;
+        }
+
+        .image-content img:hover {
+            filter: brightness(1);
+            transform: scale(1.02);
+        }
+
+        .qrcode-section {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            background: transparent;
+            color: #FFD700;
+            padding: 12px 24px;
+            text-decoration: none;
+            border: 2px solid #FFD700;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+        }
+
+        .button:active {
+            transform: translateY(1px);
+            background: rgba(255, 215, 0, 0.5);
+        }
+
+        .parallax {
+            background-color: black;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-bottom: 2px solid #FFD700;
+        }
+
+        .parallax h2 {
+            background: rgba(0,0,0,0.7);
+            padding: 15px;
+            border-radius: 10px;
+            color: #FFD700;
+            border: 2px solid #FFD700;
+        }
+
+        @media screen and (max-width: 768px) {
+            .section, .section.reverse {
+                flex-direction: column;
+            }
+
+            .text-content, .image-content {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .qrcode-section {
+                flex-direction: column;
+            }
+        }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
-
 <body>
-
     <!-- 首頁進場區塊 -->
     <header class="hero">
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 class="hero-title">ServeOn AI 客服</h1>
             <p class="hero-subtitle">智能客服 | 精準行銷 | 情緒分析</p>
-             <section class="qrcode-section">
-        <div class="text-content">
-            <h2>📱 加入Serveon 體驗 AI 客服</h2>
-            <p>立即與 AI 助理對話，感受智能客服的魅力！</p>
-        </div>
-        <div class="image-content">
-            <img src="logo.png" alt="掃描 QR Code">
-        </div>
-    </section>
+            <section class="qrcode-section">
+                <div class="text-content">
+                    <h2>📱 加入Serveon 體驗 AI 客服</h2>
+                    <p>立即與 AI 助理對話，感受智能客服的魅力！</p>
+                </div>
+                <div class="image-content">
+                    <img src="logo.png" alt="掃描 QR Code">
+                </div>
+            </section>
             <a href="0318.html" class="button">探索更多</a>
         </div>
     </header>
@@ -56,7 +233,7 @@
         </div>
     </section>
 
-    <section class="parallax second">
+    <section class="parallax">
         <h2>數據驅動決策，讓 AI 更懂你的客戶</h2>
     </section>
 
@@ -70,9 +247,6 @@
             <img src="images/Array_board.jpg" alt="AI 數據儀表板">
         </div>
     </section>
-
-    <!-- 掃描 QR Code 體驗 AI 客服 -->
-   
 
     <script src="script.js"></script>
 </body>
